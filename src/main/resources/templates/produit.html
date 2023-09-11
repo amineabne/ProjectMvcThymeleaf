@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/css/bootstrap.min.css">
     <title>Liste des Patients</title>
 </head>
+<form method="get" th:action="@{index}">
+    <label> key word </label>
+    <input type="text" name = "keyword" th:value="${Keyword}">
+    <button type="submit" class="btn btn-primary"> Chercher   </button>
+</form>
 <body>
 <div class="container mt-4">
     <h1 class="mb-4">Liste des Patients</h1>
@@ -22,9 +27,22 @@
             <td th:text="${p.id}"></td>
             <td th:text="${p.nom}"></td>
             <td th:text="${p.prix}"></td>
+            <td>
+                <a class="btn btn-outline-danger" th:href="@{delete(id=${p.id})}">
+                    Delete
+                </a>
+            </td>
+
         </tr>
         </tbody>
     </table>
+    <ul class="nav nav-pills" >
+        <li th:each="page,status:${pages}">
+            <a  th:class ="${status.index==currentPage?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
+                th:text="${status.index}"
+                th:href="@{index(page=${status.index},keyword=${keyword})}"></a>
+        </li>
+    </ul>
 </div>
 
 

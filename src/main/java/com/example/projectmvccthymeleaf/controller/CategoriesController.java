@@ -3,6 +3,7 @@ package com.example.projectmvccthymeleaf.controller;
 import com.example.projectmvccthymeleaf.entities.Categorie;
 import com.example.projectmvccthymeleaf.entities.Produit;
 import com.example.projectmvccthymeleaf.repositories.CategoriesRepository;
+import com.example.projectmvccthymeleaf.repositories.ProduitRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,16 +16,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@AllArgsConstructor
+
 public class CategoriesController {
     @Autowired
     CategoriesRepository categoriesRepository;
 
     @GetMapping(path = "/cat")
     public String produits(Model model , @RequestParam( name= "page" ,defaultValue="0") int page,
-                           @RequestParam( name= "size" ,defaultValue="5")int size) {
-        Page<Categorie> pageCategories = categoriesRepository.findAll(PageRequest.of(page,size));
+                           @RequestParam( name= "size" ,defaultValue="5")int size,
+                           @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+        Page<Categorie> pageCategories = categoriesRepository.findByNomContains(keyword, PageRequest.of(page,size));
         model.addAttribute("listCategories", pageCategories.getContent());
         return "Categories.html";
+    }
+    public CategoriesController(CategoriesRepository categoriesRepository) {
+        this.categoriesRepository = categoriesRepository;
+    }
+
+    @GetMapping("/deleteC")
+    public  String delete(long id ) {
+      categoriesRepository.deleteById((id) );
+        return  "redirect:/index" ;
+    }
+    @GetMapping("h")
+    public  String home( ) {
+
+        return  "redirect:/index" ;
     }
 }
