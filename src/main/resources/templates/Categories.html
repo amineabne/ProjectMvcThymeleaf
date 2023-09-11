@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/css/bootstrap.min.css">
   <title>Liste des Catégories</title>
+
 </head>
 <form method="get" th:action="@{index}">
   <label> key word </label>
@@ -29,6 +30,21 @@
         <a onclick="return confirm('etes vous sure ?')" class="btn btn-outline-danger" th:href="@{delete(id=${p.id},keyword=${keyword}, page=${currentpage})}">
           Delete
         </a>
+        <a onclick="return redirectToForm();" class="btn btn-outline-dark">Accéder au Formulaire Categorie  ></a>
+
+        </a>
+        <script>
+          function redirectToForm() {
+            if (confirm("Etes-vous sûr de vouloir accéder au formulaire ?")) {
+
+              window.location.href = '/formCategories';
+            } else {
+
+            }
+
+            return false;
+          }
+        </script>
       </td>
 
     </tr>

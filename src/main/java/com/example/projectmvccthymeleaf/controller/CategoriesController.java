@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -43,5 +44,15 @@ public class CategoriesController {
     public  String home( ) {
 
         return  "redirect:/index" ;
+    }
+    @GetMapping("/formCategories")
+    public String formCategories(Model model){
+        model.addAttribute("Categorie",new Categorie());
+        return "formCategories";
+    }
+    @PostMapping("/saveC")
+    public String save(Model model ,Categorie categorie){
+        categoriesRepository.save(categorie);
+        return "redirect:/index";
     }
 }
