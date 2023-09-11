@@ -35,6 +35,7 @@ public class CategoriesController {
 
     @GetMapping("/deleteC")
     public  String delete(long id ) {
+
       categoriesRepository.deleteById((id) );
         return  "redirect:/index" ;
     }

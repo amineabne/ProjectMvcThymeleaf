@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -50,4 +51,15 @@ public class ProduitController {
         return  "redirect:/index" ;
     }
 
+    @GetMapping("/formProduits")
+    public String formProduits(Model model){
+        model.addAttribute("Produit",new Produit());
+        return "formProduits";
+    }
+
+    @PostMapping("/save")
+    public String save(Model model ,Produit produit){
+      produitRepository.save(produit);
+      return "redirect:/index";
+    }
 }

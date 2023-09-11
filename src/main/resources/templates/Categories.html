@@ -26,7 +26,7 @@
       <td th:text="${p.id}"></td>
       <td th:text="${p.nom}"></td>
       <td>
-        <a class="btn btn-outline-danger" th:href="@{delete(id=${p.id})}">
+        <a onclick="return confirm('etes vous sure ?')" class="btn btn-outline-danger" th:href="@{delete(id=${p.id},keyword=${keyword}, page=${currentpage})}">
           Delete
         </a>
       </td>
