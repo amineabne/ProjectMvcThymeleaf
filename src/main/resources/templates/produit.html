@@ -2,26 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/css/bootstrap.min.css">
     <title>Liste des Patients</title>
 </head>
 <body>
-<h1>Patients</h1>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Prix</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="p : ${listProduits}">
-        <td th:text="${p.id}"></td>
-        <td th:text="${p.nom}"></td>
-        <td th:text="${p.prix}"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container mt-4">
+    <h1 class="mb-4">Liste des Patients</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${listProduits}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.nom}"></td>
+            <td th:text="${p.prix}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
 </body>
 </html>
