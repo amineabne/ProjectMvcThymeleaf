@@ -21,6 +21,6 @@ public class Produit {
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
-    // Getters and setters
+
 }
 

@@ -5,6 +5,7 @@ import com.example.projectmvccthymeleaf.repositories.ProduitRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
@@ -15,7 +16,9 @@ public class ProduitController {
     @Autowired
   private   ProduitRepository produitRepository;
     @GetMapping(path = "/index")
-    public String produits (){
-return "produit";
+    public String produits (Model model){
+        List<Produit> produits=produitRepository.findAll();
+        model.addAttribute("listProduits",produits);
+return "produit.html";
     }
 }
